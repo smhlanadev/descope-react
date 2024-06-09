@@ -11,7 +11,7 @@ function App() {
 
   const [recipes, setRecipe] = useState([]);
 
-  const exampleFetchCall = async () => {
+  const fetchRecipes = async () => {
     await fetch("https://dummyjson.com/recipes")
         .then((response) => response.json())
         .then((results) => {
@@ -21,7 +21,7 @@ function App() {
   }
   
   useEffect(() => {
-    exampleFetchCall();
+    fetchRecipes();
   }, [isAuthenticated, user]);
 
   const handleLogout = () => {
