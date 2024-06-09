@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider
-      projectId=''
+      projectId='P2gxZATJZwzozEJZcElGJ016NG9q'
     >
       <App />
     </AuthProvider>
