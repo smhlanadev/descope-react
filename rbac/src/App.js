@@ -1,7 +1,8 @@
 import './App.css';
-import { useDescope, useSession, useUser } from '@descope/react-sdk'
+import { getJwtPermissions, getSessionToken, useDescope, useSession, useUser } from '@descope/react-sdk'
 import { Descope } from '@descope/react-sdk'
 import { React, useEffect, useState } from 'react';
+import { roles } from './roles';
 
 function App() {
   const { isAuthenticated, isSessionLoading } = useSession()
@@ -9,6 +10,7 @@ function App() {
   const { logout } = useDescope()
 
   const [recipes, setRecipe] = useState([]);
+  const [permissions, setPermissions] = useState([]);
 
   const exampleFetchCall = async () => {
     await fetch("https://dummyjson.com/recipes")
@@ -20,11 +22,21 @@ function App() {
   }
   
   useEffect(() => {
-    exampleFetchCall();
-  }, []);
+    handleIsAuthenticated();
+  }, [isAuthenticated, user]);
 
   const handleLogout = () => {
     logout()
+  };
+
+  const handleIsAuthenticated = () => {
+    // const sessionToken = getSessionToken();
+    // const permissions = getJwtPermissions(sessionToken);
+    // setPermissions(permissions);
+    // console.log(permissions);
+    // console.log(user.roleNames);
+
+    exampleFetchCall();
   };
 
   return <>
@@ -47,22 +59,33 @@ function App() {
         <>
           <p>Hello {user.name}</p>
           <button onClick={handleLogout}>Logout</button>
-          <div>Here are some delicious recipes:</div>
-          {recipes.length > 0 && 
-            <>
-              {recipes.map((recipe) => {
-                return (
-                  <div key={recipe.id}>
-                    <h1>{recipe.name}</h1>
-                    <p>Ingredients: {recipe.ingredients.join(', ')}.</p>
-                    {recipe.instructions.map((instruction, index) => {
-                      return (<p key={index}>{instruction}</p>)
-                    })}
-                  </div>
-                )
-              })}
-            </>
-          }
+          {(user.roleNames.includes(roles.CHEF) || user.roleNames.includes(roles.USER)) && 
+            <div>
+              <div>Here are some delicious recipes:</div>
+
+              {recipes.length > 0 && 
+                <>
+                  {recipes.map((recipe) => {
+                    return (
+                      <div key={recipe.id}>
+                        <h1>{recipe.name}</h1>
+
+                        {
+                          user.roleNames.includes(roles.CHEF) &&
+                          <>
+                            <p>Ingredients: {recipe.ingredients.join(', ')}.</p>
+                            {recipe.instructions.map((instruction, index) => {
+                              return (<p key={index}>{instruction}</p>)
+                            })}
+                          </>
+                        }
+                      </div>
+                    )
+                  })}
+                </>
+              }
+            </div>
+            }
         </>
       )}
   </>;
