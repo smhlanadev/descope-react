@@ -1,5 +1,5 @@
 import './App.css';
-import { getJwtPermissions, getSessionToken, useDescope, useSession, useUser } from '@descope/react-sdk'
+import { useDescope, useSession, useUser } from '@descope/react-sdk'
 import { Descope } from '@descope/react-sdk'
 import { React, useEffect, useState } from 'react';
 import { roles } from './roles';
@@ -10,7 +10,6 @@ function App() {
   const { logout } = useDescope()
 
   const [recipes, setRecipe] = useState([]);
-  const [permissions, setPermissions] = useState([]);
 
   const exampleFetchCall = async () => {
     await fetch("https://dummyjson.com/recipes")
@@ -22,21 +21,11 @@ function App() {
   }
   
   useEffect(() => {
-    handleIsAuthenticated();
+    exampleFetchCall();
   }, [isAuthenticated, user]);
 
   const handleLogout = () => {
     logout()
-  };
-
-  const handleIsAuthenticated = () => {
-    // const sessionToken = getSessionToken();
-    // const permissions = getJwtPermissions(sessionToken);
-    // setPermissions(permissions);
-    // console.log(permissions);
-    // console.log(user.roleNames);
-
-    exampleFetchCall();
   };
 
   return <>
