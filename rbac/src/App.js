@@ -45,12 +45,12 @@ function App() {
 
     {!isUserLoading && isAuthenticated &&
       (
-        <>
+        <div style={{padding:"0 0 3rem 3rem"}}>
           <p>Hello {user.name}</p>
           <button onClick={handleLogout}>Logout</button>
           {(user.roleNames.includes(roles.CHEF) || user.roleNames.includes(roles.USER)) && 
             <div>
-              <div>Here are some delicious recipes:</div>
+              <div style={{padding:"1rem 0 0 0"}}>Here are some delicious recipes:</div>
 
               {recipes.length > 0 && 
                 <>
@@ -75,7 +75,7 @@ function App() {
               }
             </div>
             }
-        </>
+        </div>
       )}
   </>;
 }
