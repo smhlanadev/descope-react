@@ -31,7 +31,7 @@ function App() {
     {!isAuthenticated &&
       (
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ "width": "400px" }}>
+          <div style={{ width: "400px" }}>
             <Descope
               flowId="sign-up-or-in"
               onSuccess={(e) => console.log(e.detail.user)}
