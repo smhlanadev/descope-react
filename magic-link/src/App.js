@@ -30,11 +30,15 @@ function App() {
   return <>
     {!isAuthenticated &&
       (
-        <Descope
-          flowId="sign-up-or-in"
-          onSuccess={(e) => console.log(e.detail.user)}
-          onError={(e) => console.log('Could not log in!')}
-        />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ "width": "400px" }}>
+            <Descope
+              flowId="sign-up-or-in"
+              onSuccess={(e) => console.log(e.detail.user)}
+              onError={(e) => console.log('Could not log in!')}
+            />
+          </div>
+        </div>
       )
     }
 
