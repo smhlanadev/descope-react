@@ -5,10 +5,10 @@ This project is created using React and integrates with the Descope API to creat
 ## Getting Started
 Here are the things you will need to get this project running:
 ### Prerequisites
-[Node v20](https://nodejs.org/en/download/prebuilt-installer)
-[Visual Studio Code](https://code.visualstudio.com/)
-[A Descope Free Forever Account](https://www.descope.com/sign-up)
-An email account. [You can use a free temporary email service](https://temp-mail.org/en/)
+- [Node v20](https://nodejs.org/en/download/prebuilt-installer)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [A Descope Free Forever Account](https://www.descope.com/sign-up)
+- An email account. [You can use a free temporary email service](https://temp-mail.org/en/)
 
 Use a command line interface (cmd, PowerShell etc.), follow the steps below:
 ### Step 1. Clone or download this repository
